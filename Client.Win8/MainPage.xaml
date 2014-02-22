@@ -9,11 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel HorizontalAlignment="Center">
-        <TextBox x:Name="Username" Text="John" MinWidth="250" Margin="0,25"/>
-        <PasswordBox x:Name="Password" Password="Gnabber" Margin="0,25"></PasswordBox>
+        <TextBox x:Name="Username" Text="John" MinWidth="250" Margin="0,25" PlaceholderText="John" Header="Username"/>
+        <PasswordBox x:Name="Password" Password="Gnabber" Margin="0,25" Header="Password"></PasswordBox>
         <Button Content="Login" HorizontalAlignment="Center"/>
-        <TextBlock Foreground="White" Margin="0,50,0,0">Response</TextBlock>
-        <TextBlock x:Name="Response"></TextBlock>
+        <TextBlock Foreground="White" Margin="0,50,0,0" Style="{StaticResource SubtitleTextBlockStyle}" Text="Server Response"/>
+        <TextBlock x:Name="Response" Style="{StaticResource CaptionTextBlockStyle}" Text="Not logged in"></TextBlock>
     </StackPanel>
 
     </Grid>
