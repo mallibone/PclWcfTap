@@ -8,21 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Client.Com.ServiceReference {
+namespace Client.Com.SimpleServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="SimpleService", ConfigurationName="SimpleServiceReference.IService")]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/Login", ReplyAction="http://tempuri.org/IService/LoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="SimpleService/IService/Login", ReplyAction="SimpleService/IService/LoginResponse")]
         System.IAsyncResult BeginLogin(string username, string password, System.AsyncCallback callback, object asyncState);
         
-        string EndLogin(System.IAsyncResult result);
+        bool EndLogin(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceChannel : Client.Com.ServiceReference.IService, System.ServiceModel.IClientChannel {
+    public interface IServiceChannel : Client.Com.SimpleServiceReference.IService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -36,17 +36,17 @@ namespace Client.Com.ServiceReference {
             this.results = results;
         }
         
-        public string Result {
+        public bool Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceClient : System.ServiceModel.ClientBase<Client.Com.ServiceReference.IService>, Client.Com.ServiceReference.IService {
+    public partial class ServiceClient : System.ServiceModel.ClientBase<Client.Com.SimpleServiceReference.IService>, Client.Com.SimpleServiceReference.IService {
         
         private BeginOperationDelegate onBeginLoginDelegate;
         
@@ -115,23 +115,23 @@ namespace Client.Com.ServiceReference {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult Client.Com.ServiceReference.IService.BeginLogin(string username, string password, System.AsyncCallback callback, object asyncState) {
+        System.IAsyncResult Client.Com.SimpleServiceReference.IService.BeginLogin(string username, string password, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginLogin(username, password, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        string Client.Com.ServiceReference.IService.EndLogin(System.IAsyncResult result) {
+        bool Client.Com.SimpleServiceReference.IService.EndLogin(System.IAsyncResult result) {
             return base.Channel.EndLogin(result);
         }
         
         private System.IAsyncResult OnBeginLogin(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string username = ((string)(inValues[0]));
             string password = ((string)(inValues[1]));
-            return ((Client.Com.ServiceReference.IService)(this)).BeginLogin(username, password, callback, asyncState);
+            return ((Client.Com.SimpleServiceReference.IService)(this)).BeginLogin(username, password, callback, asyncState);
         }
         
         private object[] OnEndLogin(System.IAsyncResult result) {
-            string retVal = ((Client.Com.ServiceReference.IService)(this)).EndLogin(result);
+            bool retVal = ((Client.Com.SimpleServiceReference.IService)(this)).EndLogin(result);
             return new object[] {
                     retVal};
         }
@@ -228,7 +228,7 @@ namespace Client.Com.ServiceReference {
             base.InvokeAsync(this.onBeginCloseDelegate, null, this.onEndCloseDelegate, this.onCloseCompletedDelegate, userState);
         }
         
-        protected override Client.Com.ServiceReference.IService CreateChannel() {
+        protected override Client.Com.SimpleServiceReference.IService CreateChannel() {
             return new ServiceClientChannel(this);
         }
         
@@ -257,9 +257,9 @@ namespace Client.Com.ServiceReference {
             return ServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IService);
         }
         
-        private class ServiceClientChannel : ChannelBase<Client.Com.ServiceReference.IService>, Client.Com.ServiceReference.IService {
+        private class ServiceClientChannel : ChannelBase<Client.Com.SimpleServiceReference.IService>, Client.Com.SimpleServiceReference.IService {
             
-            public ServiceClientChannel(System.ServiceModel.ClientBase<Client.Com.ServiceReference.IService> client) : 
+            public ServiceClientChannel(System.ServiceModel.ClientBase<Client.Com.SimpleServiceReference.IService> client) : 
                     base(client) {
             }
             
@@ -271,14 +271,15 @@ namespace Client.Com.ServiceReference {
                 return _result;
             }
             
-            public string EndLogin(System.IAsyncResult result) {
+            public bool EndLogin(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                string _result = ((string)(base.EndInvoke("Login", _args, result)));
+                bool _result = ((bool)(base.EndInvoke("Login", _args, result)));
                 return _result;
             }
         }
         
         public enum EndpointConfiguration {
+            
             BasicHttpBinding_IService,
         }
     }
